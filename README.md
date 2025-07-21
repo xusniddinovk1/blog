@@ -1,1 +1,1 @@
-Blog sote
+Blog site
