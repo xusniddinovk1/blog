@@ -5,7 +5,7 @@
 {% with show_userbar=False %}
 {% block content %}
 <div class="form-container">
-    <h2 class="form-title">News</h2>  <!-- Qo‘shilgan sarlavha -->
+    <h2 class="form-title">Articles</h2>  <!-- Qo‘shilgan sarlavha -->
     <form method="post" enctype="multipart/form-data" class="styled-form">
         {% csrf_token %}
         {{ form.non_field_errors }}
@@ -21,13 +21,18 @@
         </div>
 
         <div class="form-group">
+            <label for="{{ form.category.id_for_label }}">Kategoriya</label>
+            {{ form.category }}
+        </div>
+
+        <div class="form-group">
             <label for="{{ form.image.id_for_label }}">Rasm</label>
             {{ form.image }}
         </div>
 
         <div class="form-buttons">
             <button type="submit" class="submit-btn">💾 Saqlash</button>
-            <a href="{% url 'news_list' %}" class="cancel-btn">⬅️ Orqaga</a>
+            <a href="{% url 'article_list' %}" class="cancel-btn">⬅️ Orqaga</a>
         </div>
     </form>
 </div>
