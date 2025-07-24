@@ -1,5 +1,9 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordChangeView
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+
 from blog.models import AboutSite, Category, Post
 from dashboard.forms import AboutSiteForm, CategoryForm, PostForm
 from django.contrib.auth import login, logout, authenticate
@@ -26,6 +30,38 @@ def login_page(request):
 def logout_page(request):
     logout(request)
     return redirect('login_page')
+
+
+@login_required_decorator
+def my_profile(request):
+    ctx = {
+        'user': request.user,
+    }
+    return render(request, 'dashboard/profile/profile.html', ctx)
+
+
+@login_required_decorator
+def profile_edit(request):
+    user = request.user
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('my_profile')  # profil sahifasiga qaytish
+    else:
+        form = ProfileForm(instance=user)
+
+    ctx = {
+        'form': form
+    }
+
+    return render(request, 'dashboard/profile/profile_edit.html', ctx)
+
+
+@method_decorator(login_required, name='dispatch')
+class CustomPasswordChangeView(PasswordChangeView):
+    template_name = 'dashboard/profile/password_change.html'
+    success_url = reverse_lazy('password_change_done')
 
 
 @login_required_decorator
