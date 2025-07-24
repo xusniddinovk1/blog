@@ -118,7 +118,7 @@ def create_category(request):
 
 @login_required(login_url='login_page')
 def edit_category(request, slug):
-    form = CategoryForm(request.POST or None, request.FILES or Non)
+    form = CategoryForm(request.POST or None, request.FILES or None)
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('category_list')
