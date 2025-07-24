@@ -1,0 +1,177 @@
+:root {
+  --bg: #f9fafb;
+  --fg: #111827;
+  --primary: #2563eb;
+  --danger: #ef4444;
+  --gray: #9ca3af;
+  --card-bg: #ffffff;
+  --border: #e5e7eb;
+}
+/* === BASE === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* === FORM CONTAINER === */
+.form-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--fg);
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 0 auto; /* markazlashtirish */
+  padding: 2rem; /* ichki bo'sh joy */
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: visible; /* scroll bo‘lmasligi uchun */
+  margin-top: 0; /* tepasi bilan tenglashtirish uchun */
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: var(--fg);
+}
+.form-buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap; /* kichik ekranda qulaylik uchun */
+}
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+/* === FORM ELEMENTS === */
+.styled-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.styled-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.styled-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.styled-form input,
+.styled-form select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: "Segoe UI", sans-serif;
+  background-color: var(--bg);
+  color: var(--fg);
+}
+.styled-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: "Segoe UI", sans-serif;
+  background-color: var(--bg);
+  color: var(--fg);
+  resize: vertical;
+  min-height: 120px; /* 👈 faqat textarea uchun ishlasin */
+}
+
+.styled-form input:focus,
+.styled-form textarea:focus,
+.styled-form select:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+/* === BUTTONS === */
+.submit-btn {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: #1d4ed8;
+}
+
+.cancel-btn {
+  margin-left: 1rem;
+  background-color: var(--gray);
+  color: white;
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #6b7280;
+}
+.submit-btn,
+.cancel-btn {
+  flex: 1;
+  text-align: center;
+}
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  .form-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .submit-btn,
+  .cancel-btn {
+    width: 100%;
+    margin-top: 1rem;
+    margin-left: 0;
+  }
+}
+@media (max-width: 600px) {
+  .form-buttons {
+    flex-direction: column;
+  }
+}
+@media (max-width: 600px) {
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .submit-btn,
+  .cancel-btn {
+    width: 100%;
+  }
+}
