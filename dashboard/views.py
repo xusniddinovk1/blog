@@ -42,3 +42,135 @@ def main_dashboard(request):
         }
     }
     return render(request, 'dashboard/index.html', ctx)
+
+
+@login_required_decorator
+def about_list(request):
+    text = AboutSite.objects.all()
+    ctx = {
+        'text': text
+    }
+    return render(request, 'dashboard/about/list.html', ctx)
+
+
+@login_required_decorator
+def create_text(request):
+    model = AboutSite()
+    form = AboutSiteForm(request.POST or None, request.FILES or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('about_list')
+    ctx = {
+        'model': model,
+        'form': form
+    }
+    return render(request, 'dashboard/about/form.html', ctx)
+
+
+@login_required_decorator
+def edit_text(request, slug):
+    model = AboutSite.objects.get(slug=slug)
+    form = AboutSiteForm(request.POST or None, request.FILES or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('about_list')
+    ctx = {
+        'model': model,
+        'form': form
+    }
+    return render(request, 'dashboard/about/form.html', ctx)
+
+
+@login_required_decorator
+def delete_text(request, slug):
+    model = AboutSite.objects.get(slug=slug)
+    model.delete()
+    return redirect('about_list')
+
+
+@login_required_decorator
+def category_list(request):
+    categories = Category.objects.all()
+    ctx = {
+        'categories': categories
+    }
+    return render(request, 'dashboard/category/list.html', ctx)
+
+
+@login_required_decorator
+def create_category(request):
+    model = Category()
+    form = CategoryForm(request.POST or None, request.FILES or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('category_list')
+    ctx = {
+        'model': model,
+        'form': form
+    }
+    return render(request, 'dashboard/category/form.html', ctx)
+
+
+@login_required_decorator
+def edit_category(request, slug):
+    model = Category.objects.get(slug=slug)
+    form = CategoryForm(request.POST or None, request.FILES or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('category_list')
+    ctx = {
+        'model': model,
+        'form': form
+    }
+    return render(request, 'dashboard/category/form.html', ctx)
+
+
+@login_required_decorator
+def delete_category(request, slug):
+    model = Category.objects.get(slug=slug)
+    model.delete()
+    return redirect('category_list')
+
+
+@login_required_decorator
+def article_list(request):
+    posts = Post.objects.all()
+    ctx = {
+        'posts': posts
+    }
+    return render(request, 'dashboard/article/list.html', ctx)
+
+
+@login_required_decorator
+def create_article(request):
+    model = Post()
+    form = PostForm(request.POST or None, request.FILES or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('article_list')
+    ctx = {
+        'model': model,
+        'form': form
+    }
+    return render(request, 'dashboard/article/form.html', ctx)
+
+
+@login_required_decorator
+def edit_article(request, slug):
+    model = Post.objects.get(slug=slug)
+    form = PostForm(request.POST or None, request.FILES or None, instance=model)
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('article_list')
+    ctx = {
+        'model': model,
+        'form': form
+    }
+    return render(request, 'dashboard/article/form.html', ctx)
+
+
+@login_required_decorator
+def delete_article(request, slug):
+    model = Post.objects.get(slug=slug)
+    model.delete()
+    return redirect('article_list')
