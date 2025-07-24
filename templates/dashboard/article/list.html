@@ -1,13 +1,13 @@
 {% extends 'dashboard/base.html' %}
 {% load humanize %}
 
-{% block title %}About Us List{% endblock %}
-{% block page_header %}News List{% endblock %}
+{% block title %}Article List{% endblock %}
+{% block page_header %}Article List{% endblock %}
 
 {% block content %}
 <div class="container center-content">
     <div style="text-align: right; margin-bottom: 1rem;">
-        <a href="{% url 'news_create' %}" class="btn btn-success">➕ Yangi bo‘lim qo‘shish</a>
+        <a href="{% url 'create_article' %}" class="btn btn-success">➕ Yangi bo‘lim qo‘shish</a>
     </div>
     <div class="table-wrapper">
         <table class="table">
@@ -16,17 +16,18 @@
                 <th class="title">Sarlavha</th>
                 <th class="slug">Slug</th>
                 <th class="description">Tavsif</th>
+                <th class="category">Kategoriya</th>
                 <th class="image">Rasm</th>
-                <th class="created">Yaratilgan</th>
                 <th class="actions">Amallar</th>
             </tr>
             </thead>
             <tbody>
-            {% for txt in news_item %}
+            {% for txt in posts %}
             <tr>
                 <td class="title">{{ txt.title }}</td>
                 <td class="slug">{{ txt.slug }}</td>
-                <td class="description">{{ txt.content|truncatechars:50 }}</td>
+                <td class="content">{{ txt.content|truncatechars:50 }}</td>
+                <td class="category">{{ txt.category}}</td>
                 <td class="image">
                     {% if txt.image %}
                     <img src="{{ txt.image.url }}" alt="Rasm"/>
@@ -34,11 +35,10 @@
                     Yo‘q
                     {% endif %}
                 </td>
-                <td class="created">{{ txt.created_at|date:"Y-m-d H:i" }}</td>
 
                 <td class="actions">
-                    <a href="{% url 'news_edit' txt.slug %}" class="btn btn-warning btn-sm">✏️</a>
-                    <a href="{% url 'news_delete' txt.slug %}" class="btn btn-danger btn-sm">🗑️</a>
+                    <a href="{% url 'edit_article' txt.slug %}" class="btn btn-warning btn-sm">✏️</a>
+                    <a href="{% url 'delete_article' txt.slug %}" class="btn btn-danger btn-sm">🗑️</a>
                 </td>
             </tr>
             {% empty %}
