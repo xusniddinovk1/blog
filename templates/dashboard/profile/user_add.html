@@ -1,0 +1,47 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="container" style="max-width: 600px; margin: 2rem auto;">
+    <h2 style="text-align: center; font-size: 1.6rem; font-weight: 600; margin-bottom: 1.5rem;">
+        ➕ Yangi foydalanuvchi qo‘shish
+    </h2>
+
+    <form method="post" enctype="multipart/form-data"
+          style="background-color: var(--card-bg); padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+        {% csrf_token %}
+
+        {% if form.errors %}
+        <div style="background: #ffe6e6; color: #a94442; border-left: 5px solid #f44336; padding: 1rem; margin-bottom: 1rem; border-radius: 6px;">
+            <strong>Xatoliklar mavjud:</strong>
+            <ul style="margin-top: 0.5rem;">
+                {% for field in form %}
+                {% for error in field.errors %}
+                <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% for field in form %}
+        <div class="form-group" style="margin-bottom: 1.2rem;">
+            <label style="display: block; margin-bottom: 0.4rem; font-weight: 500;">
+                {{ field.label }}
+            </label>
+            {{ field }}
+        </div>
+        {% endfor %}
+
+        <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+            <a href="{% url 'user_list' %}" class="btn-back"
+               style="padding: 0.6rem 1.2rem; background-color: #ccc; border-radius: 8px; text-decoration: none;">
+                ⬅ Ortga
+            </a>
+            <button type="submit" class="btn-edit"
+                    style="padding: 0.6rem 1.2rem; background-color: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                💾 Saqlash
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

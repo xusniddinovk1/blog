@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+{% load humanize %}
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}Dashboard{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'dashboard/css/list.css' %}"/>
+    <link rel="stylesheet" href="{% static 'dashboard/css/form.css' %}"/>
+    {% block extra_css %}{% endblock %}
+    <script defer src="{% static 'dashboard/js/script.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</head>
+<body>
+<div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 class="logo">AdminPanel</h2>
+        <nav class="nav">
+            <a href="{% url 'home_page' %}" class="nav-link">Dashboard</a>
+            <a href="{% url 'user_list' %}" class="nav-link">Users</a>
+            <a href="{% url 'photo_list' %}" class="nav-link">Main Photo</a>
+            <a href="{% url 'about_us_list' %}" class="nav-link">About Us</a>
+            <a href="{% url 'teachers_list' %}" class="nav-link">Teachers</a>
+            <a href="{% url 'news_list' %}" class="nav-link">News</a>
+            <a href="{% url 'courses_list' %}" class="nav-link">Courses</a>
+            <a href="{% url 'lessons_list' %}" class="nav-link">Lessons</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header ichida -->
+        <header class="header">
+            <h1>{% block page_header %}Boshqaruv paneli{% endblock %}</h1>
+            <div class="header-right">
+
+                {% if show_userbar %}
+                <button class="toggle-theme" id="theme-toggle">🌙</button>
+                <div class="userbar" id="userbar">
+                    <img src="https://i.pravatar.cc/32" alt="User Avatar" class="avatar"/>
+                    <span class="username">{{ request.user }}</span>
+                    <div class="dropdown" id="user-dropdown">
+                        <ul class="dropdown-menu">
+                            <li><a href="#">My Profile</a></li>
+                            <li><a href="#">Settings</a></li>
+                            <li><a href="{% url 'logout_page' %}">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </header>
+
+        {% block content %}{% endblock %}
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!-- profile.html -->
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="profile-card"
+     style="max-width: 500px; margin: auto; background: var(--card-bg); padding: 2rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+    <div style="text-align: center;">
+        {% if user.avatar %}
+        <img src="{{ user.avatar.url }}?v={{ timestamp }}" alt="Avatar"
+             style="border-radius: 50%; margin-bottom: 1rem; width: 100px; height: 100px; object-fit: cover;">
+        {% else %}
+        <img src="https://i.pravatar.cc/100" alt="Default Avatar"
+             style="border-radius: 50%; margin-bottom: 1rem;">
+        {% endif %} <h2>{{ user.username }}</h2>
+        <p style="color: gray;">{{ user.phone_number }}</p>
+    </div>
+    <hr style="margin: 1.5rem 0;">
+    <div>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Phone:</strong> {{ user.phone_number }}</p>
+        <p><strong>Date joined:</strong> {{ user.date_joined|date:"F j, Y" }}</p>
+        <p><strong>Is staff:</strong> {{ user.is_staff }}</p>
+        <p><strong>Is superuser:</strong> {{ user.is_superuser }}</p>
+    </div>
+<div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center;">
+    <a href="{% url 'profile_edit' %}" class="btn-edit">✏️ Profilni tahrirlash</a>
+    <a href="{% url 'change_password' %}" class="btn-edit">🔒 Parolni o‘zgartirish</a>
+</div>
+
+</div>
+{% endblock %}

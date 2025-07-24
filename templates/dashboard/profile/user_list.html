@@ -1,0 +1,44 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<div class="container" style="max-width: 1000px; margin: auto;">
+    <h2 style="text-align: center; margin-bottom: 2rem;">👥 Foydalanuvchilar Ro‘yxati</h2>
+
+    <div style="text-align: right; margin-bottom: 1rem;">
+        <a href="{% url 'user_add' %}" class="btn-edit">➕ Yangi foydalanuvchi</a>
+    </div>
+
+    <table style="width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 10px; overflow: hidden;">
+        <thead style="background: var(--sidebar-hover); color: white;">
+        <tr>
+            <th style="padding: 12px;">#</th>
+            <th>Ismi</th>
+            <th>Telefon</th>
+            <th>Email</th>
+            <th>Staff</th>
+            <th>Superuser</th>
+            <th>Amallar</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+        <tr style="border-bottom: 1px solid #ddd;">
+            <td style="padding: 10px;">{{ forloop.counter }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.phone_number }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.is_staff|yesno:"✅,❌" }}</td>
+            <td>{{ user.is_superuser|yesno:"✅,❌" }}</td>
+            <td>
+                <a href="{% url 'user_edit' user.id %}" class="btn-edit" style="font-size: 0.9rem;">✏️</a>
+                <a href="{% url 'user_delete' user.id %}" class="btn-delete" style="font-size: 0.9rem;">🗑️</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7" style="text-align: center;">Foydalanuvchilar topilmadi.</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
