@@ -1,5 +1,6 @@
 from django import forms
 from blog.models import AboutSite, Category, Post
+from custom_auth.models import CustomUser
 
 
 class AboutSiteForm(forms.ModelForm):
@@ -33,4 +34,17 @@ class PostForm(forms.ModelForm):
             'content': forms.Textarea(
                 attrs={'class': 'form-control', 'placeholder': 'Enter context of article', 'row': 5}),
             'image': forms.TextInput(attrs={'class': 'form-control', 'onchange': 'loadFile(event)'}),
+        }
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'phone_number', 'email', 'bio', 'avatar']
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone number'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'bio': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter bio'}),
+            'avatar': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
