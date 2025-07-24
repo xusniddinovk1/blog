@@ -40,11 +40,8 @@ class PostForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['username', 'phone_number', 'email', 'bio', 'avatar']
+        fields = ['username', 'phone_number']
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone number'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
-            'bio': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter bio'}),
-            'avatar': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
