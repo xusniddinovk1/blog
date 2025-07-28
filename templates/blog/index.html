@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+{% load static %}
+{% load humanize %}
+<html lang="uz">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CodeWay</title>
+    <link rel="stylesheet" href="{% static 'blog/css/style.css'%}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span class="logo-text">CodeWay</span>
+    </div>
+    <nav class="nav">
+        <a href="#">Bosh sahifa</a>
+        <a href="#">Maqolalar</a>
+        <a href="#">Bog‘lanish</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+        <h1>CodeWay</h1>
+        <p>Dasturlash, texnologiya va zamonaviy veb yechimlar haqida maqolalar</p>
+        <a href="#articles" class="btn">Maqolalarni ko‘rish</a>
+    </div>
+</section>
+
+<section id="articles" class="articles-section">
+    <h2 class="section-title">So‘nggi maqolalar</h2>
+
+    <!-- Category buttons -->
+    <div class="category-filter">
+        <button class="category-btn active" data-category="all">Barchasi</button>
+        <button class="category-btn" data-category="python">Python</button>
+        <button class="category-btn" data-category="frontend">Frontend</button>
+        <button class="category-btn" data-category="backend">Backend</button>
+        <button class="category-btn" data-category="design">Dizayn</button>
+    </div>
+
+    <!-- Maqola kartalari -->
+    <div class="article-list">
+        <div class="article-card" data-category="python">
+            <img src="https://source.unsplash.com/400x250/?python,code" alt="">
+            <div class="card-content">
+                <h3>Python bilan API yaratish</h3>
+                <p>Django REST Framework orqali kuchli API yaratish.</p>
+                <a href="#">Batafsil o‘qish →</a>
+            </div>
+        </div>
+
+        <div class="article-card" data-category="frontend">
+            <img src="https://source.unsplash.com/400x250/?frontend" alt="">
+            <div class="card-content">
+                <h3>Responsiv dizayn nima?</h3>
+                <p>Turli qurilmalarda veb sahifa mosligi haqida.</p>
+                <a href="#">Batafsil o‘qish →</a>
+            </div>
+        </div>
+
+        <div class="article-card" data-category="backend">
+            <img src="https://source.unsplash.com/400x250/?backend" alt="">
+            <div class="card-content">
+                <h3>Backend nima?</h3>
+                <p>Server tomoni dasturlashning asosiy rollari.</p>
+                <a href="#">Batafsil o‘qish →</a>
+            </div>
+        </div>
+
+        <div class="article-card" data-category="design">
+            <img src="https://source.unsplash.com/400x250/?ui,ux" alt="">
+            <div class="card-content">
+                <h3>UI/UX dizayn asoslari</h3>
+                <p>Foydalanuvchi tajribasi va interfeys dizayniga kirish.</p>
+                <a href="#">Batafsil o‘qish →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h2>CodeWay</h2>
+            <p>Innovatsion va ishonchli dasturiy yechimlar platformasi.</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Bo‘limlar</h4>
+            <ul>
+                <li><a href="#">Maqolalar</a></li>
+                <li><a href="#">Biz haqimizda</a></li>
+                <li><a href="#">Aloqa</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-social">
+            <h4>Biz bilan bog‘laning</h4>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 CodeWay. Barcha huquqlar himoyalangan.</p>
+    </div>
+</footer>
+
+<script>
+    const buttons = document.querySelectorAll('.category-btn');
+    const cards = document.querySelectorAll('.article-card');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        // active klassini yangilash
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const category = button.getAttribute('data-category');
+
+        cards.forEach(card => {
+          const cardCategory = card.getAttribute('data-category');
+          if (category === 'all' || category === cardCategory) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+</script>
+</body>
+</html>
