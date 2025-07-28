@@ -88,7 +88,8 @@ def create_text(request):
 
 @login_required(login_url='login_page')
 def edit_text(request, slug):
-    form = AboutSiteForm(request.POST or None, request.FILES or None)
+    text = AboutSite.objects.get(slug=slug)
+    form = AboutSiteForm(request.POST or None, request.FILES or None, instance=text)
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('about_list')
@@ -118,7 +119,8 @@ def create_category(request):
 
 @login_required(login_url='login_page')
 def edit_category(request, slug):
-    form = CategoryForm(request.POST or None, request.FILES or None)
+    category = Category.objects.get(slug=slug)  # <- mavjud obyekt
+    form = CategoryForm(request.POST or None, request.FILES or None, instance=category)
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('category_list')
@@ -148,7 +150,8 @@ def create_article(request):
 
 @login_required(login_url='login_page')
 def edit_article(request, slug):
-    form = PostForm(request.POST or None, request.FILES or None)
+    post = Post.objects.get(slug=slug)
+    form = PostForm(request.POST or None, request.FILES or None, instance=post)
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('article_list')
