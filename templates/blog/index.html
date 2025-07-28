@@ -35,87 +35,38 @@
 </section>
 
 <section id="articles" class="articles-section">
+  <div class="container">
     <h2 class="section-title">So‘nggi maqolalar</h2>
 
-    <!-- Category buttons -->
+    <!-- Kategoriyalar -->
     <div class="category-filter">
-        <button class="category-btn active" data-category="all">Barchasi</button>
-        <button class="category-btn" data-category="python">Python</button>
-        <button class="category-btn" data-category="frontend">Frontend</button>
-        <button class="category-btn" data-category="backend">Backend</button>
-        <button class="category-btn" data-category="design">Dizayn</button>
+      <button class="category-btn active" data-category="all">Barchasi</button>
+      {% for category in categories %}
+        <button class="category-btn" data-category="{{ category.slug }}">{{ category.name }}</button>
+      {% endfor %}
     </div>
 
-    <!-- Maqola kartalari -->
+    <!-- Maqolalar -->
     <div class="article-list">
-        <div class="article-card" data-category="python">
-            <img src="https://source.unsplash.com/400x250/?python,code" alt="">
-            <div class="card-content">
-                <h3>Python bilan API yaratish</h3>
-                <p>Django REST Framework orqali kuchli API yaratish.</p>
-                <a href="#">Batafsil o‘qish →</a>
-            </div>
+      {% for article in articles %}
+      <div class="article-card" data-category="{{ article.category.slug }}">
+        {% if article.image %}
+          <img src="{{ article.image.url }}" alt="{{ article.title }}">
+        {% else %}
+          <img src="https://source.unsplash.com/400x250/?{{ article.category.name|lower }}" alt="{{ article.title }}">
+        {% endif %}
+        <div class="card-content">
+          <h3>{{ article.title }}</h3>
+          <p>{{ article.content }}</p>
+          <a href="#">Batafsil o‘qish →</a>
         </div>
-
-        <div class="article-card" data-category="frontend">
-            <img src="https://source.unsplash.com/400x250/?frontend" alt="">
-            <div class="card-content">
-                <h3>Responsiv dizayn nima?</h3>
-                <p>Turli qurilmalarda veb sahifa mosligi haqida.</p>
-                <a href="#">Batafsil o‘qish →</a>
-            </div>
-        </div>
-
-        <div class="article-card" data-category="backend">
-            <img src="https://source.unsplash.com/400x250/?backend" alt="">
-            <div class="card-content">
-                <h3>Backend nima?</h3>
-                <p>Server tomoni dasturlashning asosiy rollari.</p>
-                <a href="#">Batafsil o‘qish →</a>
-            </div>
-        </div>
-
-        <div class="article-card" data-category="design">
-            <img src="https://source.unsplash.com/400x250/?ui,ux" alt="">
-            <div class="card-content">
-                <h3>UI/UX dizayn asoslari</h3>
-                <p>Foydalanuvchi tajribasi va interfeys dizayniga kirish.</p>
-                <a href="#">Batafsil o‘qish →</a>
-            </div>
-        </div>
+      </div>
+      {% empty %}
+        <p>Maqolalar mavjud emas.</p>
+      {% endfor %}
     </div>
+  </div>
 </section>
-
-<footer class="site-footer">
-    <div class="footer-container">
-        <div class="footer-brand">
-            <h2>CodeWay</h2>
-            <p>Innovatsion va ishonchli dasturiy yechimlar platformasi.</p>
-        </div>
-
-        <div class="footer-links">
-            <h4>Bo‘limlar</h4>
-            <ul>
-                <li><a href="#">Maqolalar</a></li>
-                <li><a href="#">Biz haqimizda</a></li>
-                <li><a href="#">Aloqa</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-social">
-            <h4>Biz bilan bog‘laning</h4>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-telegram"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        <p>&copy; 2025 CodeWay. Barcha huquqlar himoyalangan.</p>
-    </div>
-</footer>
 
 <script>
     const buttons = document.querySelectorAll('.category-btn');
