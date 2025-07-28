@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
 
-
 class AboutSite(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, blank=True)
@@ -14,21 +13,19 @@ class AboutSite(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
-        super().save(self, *args, **kwargs)
-
+        super().save(*args, **kwargs)  # self YUQ!
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, blank=True)
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-        super().save(self, *args, **kwargs)
-
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)  # self YUQ!
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
@@ -43,4 +40,4 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
-        super().save(self, *args, **kwargs)
+        super().save(*args, **kwargs)  # self YUQ!
