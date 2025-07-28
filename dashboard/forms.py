@@ -33,7 +33,7 @@ class PostForm(forms.ModelForm):
             'category': forms.Select(attrs={'class': 'form-control'}),
             'content': forms.Textarea(
                 attrs={'class': 'form-control', 'placeholder': 'Enter context of article', 'row': 5}),
-            'image': forms.TextInput(attrs={'class': 'form-control', 'onchange': 'loadFile(event)'}),
+            'image': forms.FileInput(attrs={'class': 'form-control', 'onchange': 'loadFile(event)'}),
         }
 
 
