@@ -49,8 +49,8 @@
                      alt="{{ article.title }}">
                 {% endif %}
                 <div class="card-content">
-                    <h3>{{ article.title }}</h3>
-                    <p>{{ article.content }}</p>
+                    <h3>{{ article.title |truncatechars:50}}</h3>
+                    <p>{{ article.content|truncatechars:110 }}</p>
                     <a href="#">Batafsil o‘qish →</a>
                 </div>
             </div>
@@ -58,6 +58,7 @@
             <p>Maqolalar mavjud emas.</p>
             {% endfor %}
         </div>
+    </div>
 </section>
 <footer class="footer">
     <div class="footer-container">
