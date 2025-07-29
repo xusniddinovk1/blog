@@ -219,75 +219,80 @@ body {
   border-radius: 2px;
 }
 
-.site-footer {
-  background-color: #111827;
-  color: #d1d5db;
-  padding: 40px 20px 20px;
-  font-family: "Inter", sans-serif;
+.footer {
+  background-color: #101820;
+  color: #ddd;
+  padding: 60px 20px 20px;
+  font-family: "Manrope", sans-serif;
 }
 
 .footer-container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 40px;
 }
 
-.footer-brand h2 {
+.footer-logo h2 {
+  font-size: 26px;
   color: #fff;
-  font-size: 1.6rem;
   margin-bottom: 10px;
 }
 
-.footer-brand p {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #9ca3af;
+.footer-logo p {
+  font-size: 14px;
+  color: #bbb;
 }
 
 .footer-links h4,
 .footer-social h4 {
-  color: #fff;
+  font-size: 16px;
   margin-bottom: 10px;
+  color: #fff;
 }
 
-.footer-links ul {
+.footer-links ul,
+.footer-social ul {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
-.footer-links li {
+.footer-links li,
+.footer-social li {
   margin-bottom: 8px;
 }
 
-.footer-links a {
-  color: #9ca3af;
+.footer-links a,
+.footer-social a {
   text-decoration: none;
-  transition: color 0.2s ease;
+  color: #aaa;
+  font-size: 14px;
+  transition: color 0.3s;
 }
 
-.footer-links a:hover {
+.footer-links a:hover,
+.footer-social a:hover {
   color: #fff;
 }
 
-.social-icons a {
-  font-size: 1.2rem;
-  color: #9ca3af;
-  margin-right: 15px;
-  transition: color 0.2s ease;
-}
-
-.social-icons a:hover {
-  color: #3b82f6;
-}
-
 .footer-bottom {
-  text-align: center;
+  border-top: 1px solid #333;
   margin-top: 30px;
-  border-top: 1px solid #1f2937;
-  padding-top: 15px;
-  font-size: 0.85rem;
-  color: #6b7280;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+}
+
+.footer-social a i {
+  font-size: 24px; /* kattalashtirish */
+  color: #aaa;
+  margin: 0 10px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.footer-social a:hover i {
+  color: #fff;
+  transform: scale(1.2); /* hover bo‘lganda biroz kattalasadi */
 }

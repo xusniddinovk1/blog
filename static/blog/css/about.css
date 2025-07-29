@@ -1,0 +1,176 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: #ffffff;
+  background: #ffffff;
+}
+
+.navbar {
+  position: absolute;
+  background: #252323;
+  top: 0;
+  width: 100%;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  gap: 8px;
+}
+
+.logo-icon {
+  color: #3b82f6;
+  font-weight: 900;
+  font-size: 1.6rem;
+}
+
+.logo-text {
+  letter-spacing: 0.5px;
+}
+
+.nav a {
+  margin-left: 30px;
+  text-decoration: none;
+  color: #e5e7eb;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #3b82f6;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 100px 20px;
+}
+
+.title {
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #101820;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.about-text {
+  font-size: 17px;
+  color: #333;
+  line-height: 1.7;
+}
+
+.about-text p {
+  margin-bottom: 20px;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.footer {
+  background-color: #101820;
+  color: #ddd;
+  padding: 60px 20px 20px;
+  font-family: "Manrope", sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+}
+
+.footer-logo h2 {
+  font-size: 26px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.footer-logo p {
+  font-size: 14px;
+  color: #bbb;
+}
+
+.footer-links h4,
+.footer-social h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.footer-links ul,
+.footer-social ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li,
+.footer-social li {
+  margin-bottom: 8px;
+}
+
+.footer-links a,
+.footer-social a {
+  text-decoration: none;
+  color: #aaa;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover,
+.footer-social a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  margin-top: 30px;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+}
+
+.footer-social a i {
+  font-size: 24px; /* kattalashtirish */
+  color: #aaa;
+  margin: 0 10px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.footer-social a:hover i {
+  color: #fff;
+  transform: scale(1.2); /* hover bo‘lganda biroz kattalasadi */
+}

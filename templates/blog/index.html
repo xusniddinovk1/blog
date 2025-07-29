@@ -35,39 +35,70 @@
 </section>
 
 <section id="articles" class="articles-section">
-  <div class="container">
-    <h2 class="section-title">So‘nggi maqolalar</h2>
+    <div class="container">
+        <h2 class="section-title">So‘nggi maqolalar</h2>
 
-    <!-- Kategoriyalar -->
-    <div class="category-filter">
-      <button class="category-btn active" data-category="all">Barchasi</button>
-      {% for category in categories %}
-        <button class="category-btn" data-category="{{ category.slug }}">{{ category.name }}</button>
-      {% endfor %}
-    </div>
-
-    <!-- Maqolalar -->
-    <div class="article-list">
-      {% for article in articles %}
-      <div class="article-card" data-category="{{ article.category.slug }}">
-        {% if article.image %}
-          <img src="{{ article.image.url }}" alt="{{ article.title }}">
-        {% else %}
-          <img src="https://source.unsplash.com/400x250/?{{ article.category.name|lower }}" alt="{{ article.title }}">
-        {% endif %}
-        <div class="card-content">
-          <h3>{{ article.title }}</h3>
-          <p>{{ article.content }}</p>
-          <a href="#">Batafsil o‘qish →</a>
+        <!-- Kategoriyalar -->
+        <div class="category-filter">
+            <button class="category-btn active" data-category="all">Barchasi</button>
+            {% for category in categories %}
+            <button class="category-btn" data-category="{{ category.slug }}">{{ category.name }}</button>
+            {% endfor %}
         </div>
-      </div>
-      {% empty %}
-        <p>Maqolalar mavjud emas.</p>
-      {% endfor %}
-    </div>
-  </div>
-</section>
 
+        <!-- Maqolalar -->
+        <div class="article-list">
+            {% for article in articles %}
+            <div class="article-card" data-category="{{ article.category.slug }}">
+                {% if article.image %}
+                <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                {% else %}
+                <img src="https://source.unsplash.com/400x250/?{{ article.category.name|lower }}"
+                     alt="{{ article.title }}">
+                {% endif %}
+                <div class="card-content">
+                    <h3>{{ article.title }}</h3>
+                    <p>{{ article.content }}</p>
+                    <a href="#">Batafsil o‘qish →</a>
+                </div>
+            </div>
+            {% empty %}
+            <p>Maqolalar mavjud emas.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <h2>CodeWay</h2>
+            <p>Dasturchilar uchun maqolalar platformasi</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Sayt bo‘limlari</h4>
+            <ul>
+                <li><a href="/">Bosh sahifa</a></li>
+                <li><a href="/articles/">Maqolalar</a></li>
+                <li><a href="/about/">Biz haqimizda</a></li>
+                <li><a href="/contact/">Aloqa</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-social">
+            <h4>Ijtimoiy tarmoqlar</h4>
+            <ul>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 CodeWay. Barcha huquqlar himoyalangan.</p>
+    </div>
+</footer>
 <script>
     const buttons = document.querySelectorAll('.category-btn');
     const cards = document.querySelectorAll('.article-card');
