@@ -18,3 +18,11 @@ def about_page(request):
         'text': text
     }
     return render(request, 'blog/about.html', ctx)
+
+
+def article_page(request):
+    articles = Post.objects.all()
+    ctx = {
+        'articles': articles
+    }
+    return render(request, 'blog/article.html', ctx)

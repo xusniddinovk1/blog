@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>CodeWay</title>
-    <link rel="stylesheet" href="{% static 'blog/css/style.css'%}"/>
+    <title>Articles</title>
+    <link rel="stylesheet" href="{% static 'blog/css/article.css'%}"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -25,18 +25,19 @@
     </nav>
 </header>
 
-<section class="hero">
-    <div class="overlay"></div>
-    <div class="hero-content">
-        <h1>CodeWay</h1>
-        <p>Dasturlash, texnologiya va zamonaviy veb yechimlar haqida maqolalar</p>
-        <a href="#articles" class="btn">Maqolalarni ko‘rish</a>
-    </div>
-</section>
 
 <section id="articles" class="articles-section">
     <div class="container">
         <h2 class="section-title">So‘nggi maqolalar</h2>
+
+        <!-- Kategoriyalar -->
+        <div class="category-filter">
+            <button class="category-btn active" data-category="all">Barchasi</button>
+            {% for category in categories %}
+            <button class="category-btn" data-category="{{ category.slug }}">{{ category.name }}</button>
+            {% endfor %}
+        </div>
+
         <!-- Maqolalar -->
         <div class="article-list">
             {% for article in articles %}
@@ -57,11 +58,6 @@
             <p>Maqolalar mavjud emas.</p>
             {% endfor %}
         </div>
-        <!-- Barchasini ko‘rish tugmasi -->
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="{% url 'article_page' %}" class="btn">Barchasini ko‘rish</a>
-        </div>
-    </div>
 </section>
 <footer class="footer">
     <div class="footer-container">
