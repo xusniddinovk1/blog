@@ -19,7 +19,7 @@ body {
 
 /* ======================= NAVBAR ======================= */
 .navbar {
-  position: absolute;
+  position: sticky;
   top: 0;
   background: #101820;
   width: 100%;
