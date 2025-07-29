@@ -1,10 +1,12 @@
 <!DOCTYPE html>
+{% load static %}
+{% load humanize %}
 <html lang="uz">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>CodeWay</title>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="{% static 'blog/css/about.css' %}"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -16,9 +18,9 @@
         <span class="logo-text">CodeWay</span>
     </div>
     <nav class="nav">
-        <a href="#">Bosh sahifa</a>
+        <a href="{% url 'home_page' %}">Bosh sahifa</a>
         <a href="#">Maqolalar</a>
-        <a href="#">Bog‘lanish</a>
+        <a href="{% url 'about_page' %}">Bog‘lanish</a>
     </nav>
 </header>
 <div class="container">
@@ -27,17 +29,13 @@
 
     <div class="about-grid">
         <div class="about-text">
-            <p><strong>CodeWay</strong> — bu dasturlash olamida bilim olishni xohlaganlar uchun yaratilgan maqola
-                platformasi. Biz turli sohalar bo‘yicha tushunarli, amaliy va zamonaviy kontent taqdim etamiz.</p>
-            <p>Maqsadimiz: o‘zbek tilidagi eng foydali dasturlash blogiga aylanish. Har bir maqola — bu real muammo va
-                yechim bilan boyitilgan darslik.</p>
-            <p>Siz bizdan Python, Django, REST API, Frontend texnologiyalari, hamda loyihalash va UI/UX dizayn asoslari
-                haqida maqolalar topasiz.</p>
-            <p>Doimiy yangiliklar, interaktiv bloglar va o‘z ustida ishlovchi jamoa — bizning kuchimizda.</p>
+            <p><strong>{{ text.title}}</strong> — {{ text.description }}</p>
         </div>
+        {% if text.image %}
         <div class="about-image">
-            <img src="https://source.unsplash.com/600x400/?technology,code" alt="CodeWay haqida">
+            <img src="{{ text.image.url }}" alt="{{ text.title }}">
         </div>
+        {% endif %}
     </div>
 </div>
 
