@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% load static %}
+{% load humanize %}
+<html lang="uz">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CodeWay</title>
+    <link rel="stylesheet" href="{% static 'blog/css/article_detail.css'%}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span class="logo-text">CodeWay</span>
+    </div>
+    <nav class="nav">
+        <a href="{% url 'home_page' %}">Bosh sahifa</a>
+        <a href="{% url 'article_page' %}">Maqolalar</a>
+        <a href="{% url 'about_page' %}">Bog‘lanish</a>
+    </nav>
+</header>
+<div class="article-detail-container">
+    <!-- Mundarija (TOC) -->
+    <aside class="toc-sidebar">
+        <h5>MUNDARIJA</h5>
+        <ul>
+            {% for heading in toc %}
+            <li><a href="#section-{{ forloop.counter }}">{{ heading }}</a></li>
+            {% endfor %}
+        </ul>
+    </aside>
+
+    <!-- Asosiy kontent -->
+    <main class="article-main">
+        <div class="article-meta">
+            <a href="#" class="category-tag">{{ article.category.name }}</a>
+            <div class="meta-info">
+                <span><i class="far fa-calendar-alt"></i> {{ article.created_at|date:"d-F, Y" }}</span>
+                <span><i class="far fa-eye"></i> {{ article.views }} </span>
+                <span><i class="far fa-clock"></i> 6 min</span>
+            </div>
+        </div>
+
+        <h1 class="article-title">{{ article.title }}</h1>
+        <p class="article-subtitle">{{ article.subtitle }}</p>
+
+        {% if article.image %}
+        <img class="article-image" src="{{ article.image.url }}" alt="{{ article.title }}">
+        {% endif %}
+
+        <!-- Kontent -->
+        <div class="article-body">
+            {{ article.content|safe }}
+        </div>
+    </main>
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <h2>CodeWay</h2>
+            <p>Dasturchilar uchun maqolalar platformasi</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Sayt bo‘limlari</h4>
+            <ul>
+                <li><a href="/">Bosh sahifa</a></li>
+                <li><a href="/articles/">Maqolalar</a></li>
+                <li><a href="/about/">Biz haqimizda</a></li>
+                <li><a href="/contact/">Aloqa</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-social">
+            <h4>Ijtimoiy tarmoqlar</h4>
+            <ul>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 CodeWay. Barcha huquqlar himoyalangan.</p>
+    </div>
+</footer>
+</body>
+</html>

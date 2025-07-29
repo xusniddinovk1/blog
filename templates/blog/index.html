@@ -50,7 +50,7 @@
                 <div class="card-content">
                     <h3>{{ article.title |truncatechars:50 }}</h3>
                     <p>{{ article.content |truncatechars:110 }}</p>
-                    <a href="#">Batafsil o‘qish →</a>
+                    <a href="{% url 'article_detail' article.slug %}">Batafsil o‘qish →</a>
                 </div>
             </div>
             {% empty %}
