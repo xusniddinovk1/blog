@@ -63,7 +63,7 @@ def main_dashboard(request):
 
     ctx = {
         'count': {
-            'text': len(text) if text else 0,
+            'text': text,
             'categories': len(categories),
             'articles': len(articles),
         }
